@@ -54,7 +54,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Controle de Gastos</Text>
+      <Text style={styles.title}>WasteBuddy</Text>
       
       <View style={styles.card}>
         <TextInput style={styles.input} placeholder="Descrição" value={desc} onChangeText={setDesc} />
@@ -93,7 +93,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, paddingTop: 60, backgroundColor: '#f0f2f5' },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center', color: '#363f5f' },
+  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center', color: '#000000' },
   card: { backgroundColor: '#fff', padding: 15, borderRadius: 10, marginBottom: 20, elevation: 3 },
   input: { backgroundColor: '#f9f9f9', padding: 12, borderRadius: 8, marginBottom: 10, borderWidth: 1, borderColor: '#eee' },
   btn: { backgroundColor: '#33cc95', padding: 15, borderRadius: 8, alignItems: 'center' },
