@@ -4,7 +4,7 @@ O **WasteBuddy** é um aplicativo mobile focado em **Produto Mínimo Viável (MV
 
 O foco da aplicação é oferecer agilidade no registro de despesas e persistência segura de dados localmente.
 
-## 🚀 Funcionalidades
+## 💻 Funcionalidades
 
 * **Registro Instantâneo**: Inserção de descrição e valor com suporte a decimais brasileiros (vírgula).
 * **Cálculo em Tempo Real**: Somatório automático de todos os gastos através de métodos de alta ordem (`reduce`).
@@ -21,7 +21,7 @@ O foco da aplicação é oferecer agilidade no registro de despesas e persistên
 
 ---
 
-## 📦 Passo a Passo para Instalação
+## 🗺️ Passo a Passo para Instalação
 
 Siga as instruções abaixo para rodar o projeto em seu ambiente local:
 
@@ -40,7 +40,6 @@ cd wastebuddy
 ### 3. Instalar Dependências
 ```bash
 npm install
-# Garanta a biblioteca de persistência:
 npx expo install @react-native-async-storage/async-storage
 ```
 ### 4. Iniciar a Aplicação
