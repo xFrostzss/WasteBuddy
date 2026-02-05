@@ -7,7 +7,7 @@ export default function Login({ onLogin }) {
 
   const entrar = () => {
     if (user === 'admin' && pass === '123') {
-      onLogin(); // Avisa o App.js que logou com sucesso
+      onLogin(); 
     } else {
       Alert.alert("Erro", "Usuário ou senha inválidos");
     }

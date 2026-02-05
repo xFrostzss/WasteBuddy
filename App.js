@@ -4,36 +4,68 @@ import {
   FlatList, ActivityIndicator, Alert, StyleSheet 
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Login from './login'
+import Login from './login';
+import { stylesSair } from './src/styles/botao_sair';
 
 const CHAVE_STORAGE = '@gastos_v2';
+const CHAVE_LOGIN = '@usuario_logado';
 
 export default function App() {
   const [estaLogado, setEstaLogado] = useState(false);
+  const [carregandoSessao, setCarregandoSessao] = useState(true);
   const [desc, setDesc] = useState('');
   const [valor, setValor] = useState('');
   const [lista, setLista] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
-  useEffect(() => {
-    carregarDados();
+
+ useEffect(() => {
+    async function inicializarApp() {
+      try {
+        const logado = await AsyncStorage.getItem(CHAVE_LOGIN);
+        
+        if (logado === 'true') {
+          setEstaLogado(true);
+          // Chamamos a função de carregar gastos que você já tinha
+          await carregarDados(); 
+        }
+      } catch (e) {
+        console.error("Erro na inicialização:", e);
+      } finally {
+        setCarregandoSessao(false);
+      }
+    }
+    inicializarApp();
   }, []);
 
   const carregarDados = async () => {
-    try {
-      const res = await AsyncStorage.getItem(CHAVE_STORAGE);
-      // Se o JSON estiver corrompido, o parse falha. O try/catch segura isso.
-      const dados = res ? JSON.parse(res) : [];
-      setLista(Array.isArray(dados) ? dados : []);
-    } catch (e) {
-      console.error("Erro ao recuperar dados, resetando lista local:", e);
-      setLista([]);
-    } finally {
-      // ESTA LINHA É CRUCIAL: Ela garante que o loading pare de girar
-      setCarregando(false);
-    }
+    const res = await AsyncStorage.getItem(CHAVE_STORAGE);
+    const dados = res ? JSON.parse(res) : [];
+    setLista(Array.isArray(dados) ? dados : []);
   };
 
+  const handleLoginSucesso = async () => {
+    await AsyncStorage.setItem(CHAVE_LOGIN, 'true');
+    await carregarDados(); // Carrega os gastos assim que logar
+    setEstaLogado(true);
+  };
+
+  const handleLogout = async () => {
+    await AsyncStorage.setItem(CHAVE_LOGIN, 'false');
+    setEstaLogado(false);
+  };
+  
+  if (carregandoSessao) {
+    return (
+      <View style={styles.center}>
+        <ActivityIndicator size="large" color="#5429cc" />
+      </View>
+    );
+  }
+
+  if (!estaLogado) {
+    return <Login onLogin={handleLoginSucesso} />;
+  }
 
   const handleAdicionar = async () => {
     if (!desc || !valor) {
@@ -82,26 +114,17 @@ export default function App() {
     }
   };
 
-  // Cálculo robusto para evitar NaN (Not a Number)
   const totalGeral = lista.reduce((acc, item) => acc + (Number(item.valor) || 0), 0);
-
-  if (carregando) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" color="#5429cc" />
-        <Text style={{marginTop: 10}}>Sincronizando WasteBuddy...</Text>
-      </View>
-    );
-  }
-
-   if (!estaLogado) {
-    return <Login onLogin={() => setEstaLogado(true)} />;
-  }
-
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>WasteBuddy</Text>
+     <View style={stylesSair.header}>
+        <Text style={styles.title}>WasteBuddy</Text>
+        
+        <TouchableOpacity onPress={handleLogout} style={stylesSair.btnLogout}>
+          <Text style={stylesSair.btnLogoutText}>Sair</Text>
+        </TouchableOpacity>
+      </View>
       
       <View style={styles.card}>
         <TextInput style={styles.input} placeholder="Descrição" value={desc} onChangeText={setDesc} />
