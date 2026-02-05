@@ -4,10 +4,12 @@ import {
   FlatList, ActivityIndicator, Alert, StyleSheet 
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Login from './login'
 
 const CHAVE_STORAGE = '@gastos_v2';
 
 export default function App() {
+  const [estaLogado, setEstaLogado] = useState(false);
   const [desc, setDesc] = useState('');
   const [valor, setValor] = useState('');
   const [lista, setLista] = useState([]);
@@ -31,6 +33,7 @@ export default function App() {
       setCarregando(false);
     }
   };
+
 
   const handleAdicionar = async () => {
     if (!desc || !valor) {
@@ -90,6 +93,11 @@ export default function App() {
       </View>
     );
   }
+
+   if (!estaLogado) {
+    return <Login onLogin={() => setEstaLogado(true)} />;
+  }
+
 
   return (
     <View style={styles.container}>
