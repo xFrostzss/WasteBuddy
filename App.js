@@ -18,6 +18,7 @@ export default function App() {
   const [valor, setValor] = useState('');
   const [lista, setLista] = useState([]);
   const [carregando, setCarregando] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
 
  useEffect(() => {
@@ -134,7 +135,12 @@ export default function App() {
       <View style={styles.card}>
         <TextInput style={styles.input} placeholder="Descrição" value={desc} onChangeText={setDesc} />
         <TextInput style={styles.input} placeholder="Valor (R$)" keyboardType="numeric" value={valor} onChangeText={setValor} />
-        <TouchableOpacity style={styles.btn} onPress={handleAdicionar}>
+        <TouchableOpacity 
+        onMouseEnter={() => setIsHovered(true)} 
+        onMouseLeave={() => setIsHovered(false)}
+        style={[styles.btn, isHovered && styles.btnHover]} 
+        onPress={handleAdicionar}
+        >
           <Text style={styles.btnText}>Adicionar</Text>
         </TouchableOpacity>
       </View>
@@ -206,11 +212,22 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     borderColor: '#eee' 
   },
-  btn: { 
-    backgroundColor: '#33cc95', 
+ btn: { 
+    backgroundColor: '#00D1A0', 
     padding: 15, 
-    borderRadius: 8, 
-    alignItems: 'center' 
+    borderRadius: 12, 
+    alignItems: 'center',
+    transitionProperty: 'all', 
+    transitionDuration: '0.2s',
+    cursor: 'pointer',
+    elevation: 5,
+    shadowColor: '#00D1A0',
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+  },
+  btnHover: {
+    transform: [{ scale: 1.0 }],
+    backgroundColor: '#00E6B0',
   },
   btnText: { 
     color: '#fff', 
@@ -242,12 +259,16 @@ const styles = StyleSheet.create({
   },
   footer: { 
     padding: 20, 
-    backgroundColor: '#5429cc', 
-    borderRadius: 12, 
+    backgroundColor: '#633BBC', 
+    borderRadius: 15, 
     flexDirection: 'row', 
     justifyContent: 'space-between', 
     alignItems: 'center', 
-    marginTop: 10 
+    marginTop: 10,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 15,
   },
   footerLabel: { 
     color: '#fff', 
