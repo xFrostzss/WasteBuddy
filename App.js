@@ -6,6 +6,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Login from './login';
 import { stylesSair } from './src/styles/botao_sair';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const CHAVE_STORAGE = '@gastos_v2';
 const CHAVE_LOGIN = '@usuario_logado';
@@ -117,6 +118,10 @@ export default function App() {
   const totalGeral = lista.reduce((acc, item) => acc + (Number(item.valor) || 0), 0);
 
   return (
+    <LinearGradient
+    colors={['#e0f7fa', '#f1f8e9']} 
+    style={styles.container}
+  >
     <View style={styles.container}>
      <View style={stylesSair.header}>
         <Text style={styles.title}>WasteBuddy</Text>
@@ -161,24 +166,107 @@ export default function App() {
         </TouchableOpacity>
       </View>
     </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, paddingTop: 60, backgroundColor: '#f0f2f5' },
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  title: { fontSize: 28, fontWeight: 'bold', marginBottom: 25, textAlign: 'center', color: '#5429cc' },
-  card: { backgroundColor: '#fff', padding: 20, borderRadius: 12, marginBottom: 20, elevation: 4 },
-  input: { backgroundColor: '#f9f9f9', padding: 15, borderRadius: 8, marginBottom: 12, borderWidth: 1, borderColor: '#eee' },
-  btn: { backgroundColor: '#33cc95', padding: 15, borderRadius: 8, alignItems: 'center' },
-  btnText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },
-  item: { backgroundColor: '#fff', padding: 15, borderRadius: 8, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  itemDesc: { fontSize: 16, color: '#363f5f', fontWeight: '500' },
-  itemValor: { fontSize: 14, color: '#2b2b2b', fontWeight: 'bold' },
-  btnExcluir: { color: '#e52e4d', fontWeight: 'bold' },
-  footer: { padding: 20, backgroundColor: '#5429cc', borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
-  footerLabel: { color: '#fff', fontSize: 14, opacity: 0.8 },
-  footerTotal: { color: '#fff', fontSize: 22, fontWeight: 'bold' },
-  btnZerar: { backgroundColor: '#fff', padding: 8, borderRadius: 6 },
-  btnZerarText: { color: '#ff4444', fontWeight: 'bold', fontSize: 12 }
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    paddingTop: 50,
+  },
+  center: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center' 
+  },
+  title: { 
+    fontSize: 28,
+    fontWeight: 'bold', 
+    marginBottom: 25, 
+    textAlign: 'center', 
+    color: '#5429cc' 
+  },
+  card: { 
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+    padding: 20, 
+    borderRadius: 15, 
+    marginBottom: 20,
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  input: { 
+    backgroundColor: '#f9f9f9', 
+    padding: 15, borderRadius: 8, 
+    marginBottom: 12, 
+    borderWidth: 1, 
+    borderColor: '#eee' 
+  },
+  btn: { 
+    backgroundColor: '#33cc95', 
+    padding: 15, 
+    borderRadius: 8, 
+    alignItems: 'center' 
+  },
+  btnText: { 
+    color: '#fff', 
+    fontWeight: 'bold', 
+    fontSize: 16 
+  },
+  item: { 
+    backgroundColor: '#fff', 
+    padding: 15, 
+    borderRadius: 8, 
+    marginBottom: 10, 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center' 
+  },
+  itemDesc: { 
+    fontSize: 16, 
+    color: '#363f5f', 
+    fontWeight: '500' 
+  },
+  itemValor: { 
+    fontSize: 14, 
+    color: '#2b2b2b', 
+    fontWeight: 'bold' 
+  },
+  btnExcluir: { 
+    color: '#e52e4d', 
+    fontWeight: 'bold' 
+  },
+  footer: { 
+    padding: 20, 
+    backgroundColor: '#5429cc', 
+    borderRadius: 12, 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    marginTop: 10 
+  },
+  footerLabel: { 
+    color: '#fff', 
+    fontSize: 14,
+     opacity: 0.8 
+    },
+  footerTotal: { 
+    color: '#fff', 
+    fontSize: 22, 
+    fontWeight: 'bold' 
+  },
+  btnZerar: { 
+    backgroundColor: '#fff',
+    padding: 8, 
+    borderRadius: 6 
+  },
+  btnZerarText: { 
+    color: '#ff4444', 
+    fontWeight: 'bold', 
+    fontSize: 12 
+  }
 });
