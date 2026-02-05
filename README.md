@@ -35,3 +35,19 @@ Certifique-se de ter instalado:
 ```bash
 git clone [https://github.com/seu-usuario/wastebuddy.git](https://github.com/seu-usuario/wastebuddy.git)
 cd wastebuddy
+```
+
+### 3. Instalar Dependências
+```bash
+npm install
+# Garanta a biblioteca de persistência:
+npx expo install @react-native-async-storage/async-storage
+```
+### 4. Iniciar a Aplicação
+```bash
+npx expo start
+```
+### 5. Rodar no Celular
+* Abra o aplicativo Expo Go no seu smartphone.
+* Escaneie o QR Code que aparecerá no terminal ou no navegador.
+* Certifique-se de que o celular e o computador estejam conectados na mesma rede Wi-Fi.
