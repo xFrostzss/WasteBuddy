@@ -52,6 +52,7 @@ npx expo start
 * Credenciais de Teste: Usuário: admin | Senha: 123
 
 📂 Estrutura de Arquivos
+
 App.js: Componente principal com a lógica de estados e Navegação.
 
 login.js: Tela de autenticação.
