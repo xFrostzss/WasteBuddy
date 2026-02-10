@@ -53,6 +53,9 @@ npx expo start
 
 📂 Estrutura de Arquivos
 App.js: Componente principal com a lógica de estados e Navegação.
+
 login.js: Tela de autenticação.
+
 /src/styles/: Módulos de estilização (App, Login, Botões).
+
 babel.config.js: Configuração do plugin react-native-reanimated/plugin.
