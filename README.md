@@ -1,5 +1,12 @@
 # WasteBuddy📉
 
+* **Instituição:** IFPI Campus Pedro II
+* **Curso:** Análise e Desenvolvimento de Sistemas
+* **Módulo IV**
+* **Disciplina:** Programação para dispositivos móveis
+* **Professor**: Paulo de Oliveira Gomes Filho
+* **Integrantes:** Kayky Rodrigues; Kayki Ivan; Gleison Oliveira; Vinycius Huellyson; Fernando da Silva; Lincoln César
+
 O **WasteBuddy** evoluiu de um controlador simples para uma aplicação robusta de gestão financeira pessoal. Desenvolvido como projeto prático para o curso de **Análise e Desenvolvimento de Sistemas (ADS)** no IFPI Campus Pedro II.
 
 O foco atual é a união entre uma interface moderna (UI) e um fluxo de navegação completo com persistência de dados.
